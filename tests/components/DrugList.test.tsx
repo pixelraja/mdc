@@ -16,6 +16,10 @@ describe("DrugList", () => {
   it("renders items", () => {
     render(<DrugList drugs={[drug]} />);
     expect(screen.getByText("Test")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /Test Desc Phase I/ })).toHaveAttribute(
+      "href",
+      "/drugs/1",
+    );
   });
   it("renders empty state", () => {
     render(<DrugList drugs={[]} />);

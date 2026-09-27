@@ -50,7 +50,9 @@ export default function Home() {
 
   return (
     <main className="page-container main-content">
-      <h1 className="page-title">Drug Candidates</h1>
+      <h1 className="page-title"><span className="brand-icon" aria-hidden="true">
+            💊
+          </span>Drug Candidates</h1>
 
       <div className="filters">
         <SearchBar

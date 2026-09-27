@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useDebounce } from "@/hooks/useDebounce";
 
 function SearchIcon() {
   return (
@@ -35,13 +36,16 @@ export default function SearchBar({
   onChange: (v: string) => void;
 }) {
   const [local, setLocal] = useState(value);
+  const debouncedLocal = useDebounce(local);
+  const previousDebounced = useRef(debouncedLocal);
 
   useEffect(() => setLocal(value), [value]);
 
   useEffect(() => {
-    const timer = setTimeout(() => onChange(local), 300);
-    return () => clearTimeout(timer);
-  }, [local]);
+    if (debouncedLocal === previousDebounced.current) return;
+    previousDebounced.current = debouncedLocal;
+    onChange(debouncedLocal);
+  }, [debouncedLocal, onChange]);
 
   return (
     <label className="search-box">

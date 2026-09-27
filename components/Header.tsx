@@ -38,10 +38,8 @@ export default function Header() {
     <header className="app-header">
       <div className="page-container header-inner">
         <Link href="/" className="brand" aria-label="Drug Candidates home">
-          <span className="brand-icon" aria-hidden="true">
-            💊
-          </span>
-          <span>Drug Candidates</span>
+          
+          <span>Merck</span>
         </Link>
 
         <div className="header-actions">
