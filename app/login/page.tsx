@@ -38,7 +38,7 @@ export default function Login() {
   }
   return (
     <main className="flex min-h-[calc(100vh-64px)] items-center justify-center px-4">
-      <div className="w-full max-w-md rounded-xl border bg-white p-8 shadow-sm">
+      <div className="w-full max-w-md rounded-xl border-[#cbd5e1] shadow-lg bg-white p-8 shadow-sm">
         <h1 className="text-2xl font-bold">Sign in</h1>
         <p className="mt-2 text-sm text-slate-500">
           Demo credentials: demo / demo123

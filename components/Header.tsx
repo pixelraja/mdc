@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-export default function Header() {
+export default function Header({ authenticated }: { authenticated: boolean }) {
   const router = useRouter();
   const [dark, setDark] = useState(false);
 
@@ -43,12 +43,21 @@ export default function Header() {
         </Link>
 
         <div className="header-actions">
-          <span className="header-signed">
-            Signed in as <strong>demo</strong>
-          </span>
-          <button type="button" className="signout" onClick={logout}>
-            Sign out
-          </button>
+          {authenticated && (
+            <>
+              <span className="header-signed">
+                Signed in as <strong>demo</strong>
+              </span>
+              <button type="button" className="signout" onClick={logout}>
+                Sign out
+              </button>
+            </>
+          )}
+          {!authenticated && (
+            <Link href="/login" className="signout">
+              Sign in
+            </Link>
+          )}
           <button
             type="button"
             className="theme-button"

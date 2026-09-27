@@ -38,14 +38,14 @@ describe("Header", () => {
   it("restores the saved dark theme", () => {
     localStorageMock.setItem("drug-theme", "dark");
 
-    render(<Header />);
+    render(<Header authenticated={false} />);
 
     expect(document.documentElement).toHaveClass("dark");
     expect(document.documentElement.style.colorScheme).toBe("dark");
   });
 
   it("toggles and persists the theme", () => {
-    render(<Header />);
+    render(<Header authenticated={false} />);
 
     fireEvent.click(screen.getByRole("button", { name: "Toggle theme" }));
 
@@ -54,11 +54,28 @@ describe("Header", () => {
     expect(document.documentElement.style.colorScheme).toBe("dark");
   });
 
+  it("shows sign in and hides sign out when unauthenticated", () => {
+    render(<Header authenticated={false} />);
+
+    expect(screen.getByRole("link", { name: "Sign in" })).toHaveAttribute(
+      "href",
+      "/login",
+    );
+    expect(screen.queryByRole("button", { name: "Sign out" })).not.toBeInTheDocument();
+  });
+
+  it("shows sign out when authenticated", () => {
+    render(<Header authenticated />);
+
+    expect(screen.getByRole("button", { name: "Sign out" })).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "Sign in" })).not.toBeInTheDocument();
+  });
+
   it("posts logout and navigates to login", async () => {
     const fetchMock = vi.fn().mockResolvedValue({});
     vi.stubGlobal("fetch", fetchMock);
 
-    render(<Header />);
+    render(<Header authenticated />);
     fireEvent.click(screen.getByRole("button", { name: "Sign out" }));
 
     await waitFor(() => expect(pushMock).toHaveBeenCalledWith("/login"));
