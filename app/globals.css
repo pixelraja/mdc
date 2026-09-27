@@ -1,0 +1,537 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+
+  --page: #f8fafc;
+  --surface: #ffffff;
+  --surface-hover: #fbfdff;
+
+  --text: #16213a;
+  --text-heading: #182237;
+  --text-description: #4d5e79;
+  --text-muted: #5d6b84;
+  --text-secondary: #64748b;
+
+  --border: #d9e1eb;
+  --header-border: #e2e8f0;
+  --input-border: #cbd5e1;
+
+  --icon: #475569;
+  --placeholder: #91a1ba;
+  --arrow: #8ea0bb;
+
+  --focus-border: #aebed2;
+  --focus-ring: rgba(59, 130, 246, 0.08);
+
+  --skeleton: #e8edf4;
+
+  --button-bg: #ffffff;
+  --button-text: #334155;
+
+  /* Status colors */
+  --approved-text: #008b62;
+  --approved-bg: #effcf6;
+  --approved-border: #b9ebd7;
+  --approved-dot: #0aa876;
+
+  --phase-iii-text: #1760df;
+  --phase-iii-bg: #eff5ff;
+  --phase-iii-border: #c4d8ff;
+  --phase-iii-dot: #2869ea;
+
+  --phase-ii-text: #5455dd;
+  --phase-ii-bg: #f0f1ff;
+  --phase-ii-border: #cbcaff;
+  --phase-ii-dot: #5859e9;
+
+  --phase-i-text: #7861cf;
+  --phase-i-bg: #f6f3ff;
+  --phase-i-border: #ddd5ff;
+  --phase-i-dot: #7962d5;
+
+  --development-text: #c76700;
+  --development-bg: #fff8ed;
+  --development-border: #f6d7a7;
+  --development-dot: #e98b0b;
+
+  --discontinued-text: #61718b;
+  --discontinued-bg: #f2f5f9;
+  --discontinued-border: #d0d9e5;
+  --discontinued-dot: #91a3bb;
+}
+
+html.dark {
+  color-scheme: dark;
+
+  --page: #0f172a;
+  --surface: #1e293b;
+  --surface-hover: #263449;
+
+  --text: #e5e7eb;
+  --text-heading: #f1f5f9;
+  --text-description: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-secondary: #94a3b8;
+
+  --border: #334155;
+  --header-border: #334155;
+  --input-border: #475569;
+
+  --icon: #94a3b8;
+  --placeholder: #64748b;
+  --arrow: #94a3b8;
+
+  --focus-border: #64748b;
+  --focus-ring: rgba(96, 165, 250, 0.15);
+
+  --skeleton: #334155;
+
+  --button-bg: #1e293b;
+  --button-text: #e2e8f0;
+
+  /* Status colors */
+  --approved-text: #6ee7b7;
+  --approved-bg: #064e3b;
+  --approved-border: #047857;
+  --approved-dot: #34d399;
+
+  --phase-iii-text: #93c5fd;
+  --phase-iii-bg: #172554;
+  --phase-iii-border: #1d4ed8;
+  --phase-iii-dot: #60a5fa;
+
+  --phase-ii-text: #c4b5fd;
+  --phase-ii-bg: #312e81;
+  --phase-ii-border: #4f46e5;
+  --phase-ii-dot: #818cf8;
+
+  --phase-i-text: #c4b5fd;
+  --phase-i-bg: #3b2a63;
+  --phase-i-border: #6d4fc2;
+  --phase-i-dot: #a78bfa;
+
+  --development-text: #fdba74;
+  --development-bg: #431407;
+  --development-border: #9a3412;
+  --development-dot: #fb923c;
+
+  --discontinued-text: #cbd5e1;
+  --discontinued-bg: #334155;
+  --discontinued-border: #475569;
+  --discontinued-dot: #94a3b8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.app-shell {
+  min-height: 100vh;
+  background: var(--page);
+}
+
+.page-container {
+  width: min(1216px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.app-header {
+  height: 62px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--header-border);
+}
+
+.header-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.25px;
+}
+
+.brand-icon {
+  font-size: 21px;
+  line-height: 1;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--text-muted);
+}
+
+.signout {
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+.theme-button {
+  width: 35px;
+  height: 35px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: var(--button-bg);
+  color: var(--button-text);
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.main-content {
+  padding: 35px 0 48px;
+}
+
+.page-title {
+  margin: 0 0 24px;
+  font-size: 26px;
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.55px;
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 142px;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.search-box {
+  height: 41px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 13px;
+  background: var(--surface);
+  border: 1px solid var(--input-border);
+  border-radius: 7px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.02);
+}
+
+.search-icon {
+  width: 19px;
+  height: 19px;
+  flex: 0 0 auto;
+  color: var(--icon);
+}
+
+.search-input {
+  min-width: 0;
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text);
+  font-size: 15px;
+}
+
+.search-input::placeholder {
+  color: var(--placeholder);
+  opacity: 1;
+}
+
+.search-box:focus-within {
+  border-color: var(--focus-border);
+  box-shadow: 0 0 0 2px var(--focus-ring);
+}
+
+.status-select {
+  width: 100%;
+  height: 41px;
+  padding: 0 10px;
+  background: var(--surface);
+  border: 1px solid var(--input-border);
+  border-radius: 7px;
+  color: var(--text);
+  font-size: 15px;
+  outline: none;
+}
+
+.drug-list {
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+}
+.drug-detail{
+   background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+}
+.drug-row {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 11px 17px;
+  border-bottom: 1px solid var(--border);
+  transition: background 120ms ease;
+}
+
+.drug-row:last-child {
+  border-bottom: 0;
+}
+
+.drug-row:hover {
+  background: var(--surface-hover);
+}
+
+.drug-copy {
+  min-width: 0;
+}
+
+.drug-name {
+  margin: 0;
+  font-size: 16px;
+  line-height: 21px;
+  font-weight: 700;
+  color: var(--text-heading);
+}
+
+.drug-description {
+  margin: 1px 0 0;
+  font-size: 15px;
+  line-height: 21px;
+  color: var(--text-description);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.drug-actions {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  flex: 0 0 auto;
+}
+
+.arrow {
+  color: var(--arrow);
+  font-size: 25px;
+  line-height: 1;
+  transform: translateY(-1px);
+}
+
+.status-badge {
+  min-width: max-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 21px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid;
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.status-approved {
+  color: var(--approved-text);
+  background: var(--approved-bg);
+  border-color: var(--approved-border);
+}
+
+.status-approved .status-dot {
+  background: var(--approved-dot);
+}
+
+.status-phase-iii {
+  color: var(--phase-iii-text);
+  background: var(--phase-iii-bg);
+  border-color: var(--phase-iii-border);
+}
+
+.status-phase-iii .status-dot {
+  background: var(--phase-iii-dot);
+}
+
+.status-phase-ii {
+  color: var(--phase-ii-text);
+  background: var(--phase-ii-bg);
+  border-color: var(--phase-ii-border);
+}
+
+.status-phase-ii .status-dot {
+  background: var(--phase-ii-dot);
+}
+
+.status-phase-i {
+  color: var(--phase-i-text);
+  background: var(--phase-i-bg);
+  border-color: var(--phase-i-border);
+}
+
+.status-phase-i .status-dot {
+  background: var(--phase-i-dot);
+}
+
+.status-in-development {
+  color: var(--development-text);
+  background: var(--development-bg);
+  border-color: var(--development-border);
+}
+
+.status-in-development .status-dot {
+  background: var(--development-dot);
+}
+
+.status-discontinued {
+  color: var(--discontinued-text);
+  background: var(--discontinued-bg);
+  border-color: var(--discontinued-border);
+}
+
+.status-discontinued .status-dot {
+  background: var(--discontinued-dot);
+}
+
+.empty-state,
+.error-state {
+  padding: 52px 24px;
+  text-align: center;
+  color: var(--text-secondary);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+}
+
+.loading-list {
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+}
+
+.loading-row {
+  height: 72px;
+  border-bottom: 1px solid var(--border);
+  padding: 15px 17px;
+}
+
+.skeleton {
+  height: 14px;
+  width: 55%;
+  border-radius: 5px;
+  background: var(--skeleton);
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+.skeleton.short {
+  width: 35%;
+  margin-top: 9px;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.pagination button {
+  border: 1px solid var(--input-border);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 6px;
+  padding: 7px 12px;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+@media (max-width: 700px) {
+  .page-container {
+    width: min(100% - 28px, 1216px);
+  }
+
+  .header-actions {
+    gap: 8px;
+  }
+
+  .header-signed {
+    display: none;
+  }
+
+  .filters {
+    grid-template-columns: 1fr;
+  }
+
+  .drug-row {
+    align-items: flex-start;
+  }
+
+  .drug-actions {
+    padding-top: 2px;
+    gap: 9px;
+  }
+
+  .drug-description {
+    white-space: normal;
+  }
+
+  .status-badge {
+    padding: 0 8px;
+  }
+}
